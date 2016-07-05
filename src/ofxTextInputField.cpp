@@ -166,26 +166,26 @@ void ofxTextInputField::draw() {
 		
 		if(beginCursorY==endCursorY) {
 			// single line selection
-			ofRect(horizontalPadding + startX, verticalPadding + fontRef->getLineHeight()*beginCursorY,
+			ofDrawRectangle(horizontalPadding + startX, verticalPadding + fontRef->getLineHeight()*beginCursorY,
 				   endX - startX, fontRef->getLineHeight());
 		} else {
 			
 			// multiline selection.
 			// do first line to the end
-			ofRect(horizontalPadding + startX, verticalPadding + fontRef->getLineHeight()*beginCursorY,
+			ofDrawRectangle(horizontalPadding + startX, verticalPadding + fontRef->getLineHeight()*beginCursorY,
 				   fontRef->stringWidth(lines[beginCursorY]) - startX,
 				   fontRef->getLineHeight()
 			);
 			
 			// loop through entirely selected lines
 			for(int i = beginCursorY + 1; i < endCursorY; i++) {
-				ofRect(horizontalPadding, verticalPadding + fontRef->getLineHeight()*i,
+				ofDrawRectangle(horizontalPadding, verticalPadding + fontRef->getLineHeight()*i,
 					   fontRef->stringWidth(lines[i]),
 					   fontRef->getLineHeight()
 				);
 			}
 			// do last line up to endX
-			ofRect(horizontalPadding, verticalPadding + fontRef->getLineHeight()*endCursorY,
+			ofDrawRectangle(horizontalPadding, verticalPadding + fontRef->getLineHeight()*endCursorY,
 					endX, fontRef->getLineHeight()
 			);
 		}
@@ -218,7 +218,7 @@ void ofxTextInputField::draw() {
 		
 		ofSetLineWidth(1.0f);
 		//TODO: multiline with fontRef
-        ofLine(cursorPos, cursorTop,
+		ofDrawLine(cursorPos, cursorTop,
 			   cursorPos, cursorBottom);
         ofPopStyle();
     }
