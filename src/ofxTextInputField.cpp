@@ -614,6 +614,7 @@ void ofxTextInputField::addListeners() {
 	ofAddListener(ofEvents().mousePressed, this, &ofxTextInputField::mousePressed);
 	ofAddListener(ofEvents().mouseDragged, this, &ofxTextInputField::mouseDragged);
 	ofAddListener(ofEvents().mouseReleased, this, &ofxTextInputField::mouseReleased);
+	this->hasListeners = true;
 }
 
 //----------
@@ -622,8 +623,9 @@ void ofxTextInputField::removeListeners() {
 		return;
 	}
 	ofRemoveListener(ofEvents().keyPressed, this, &ofxTextInputField::keyPressed);
-	ofAddListener(ofEvents().keyReleased, this, &ofxTextInputField::keyReleased);
+	ofRemoveListener(ofEvents().keyReleased, this, &ofxTextInputField::keyReleased);
 	ofRemoveListener(ofEvents().mousePressed, this, &ofxTextInputField::mousePressed);
 	ofRemoveListener(ofEvents().mouseDragged, this, &ofxTextInputField::mouseDragged);
 	ofRemoveListener(ofEvents().mouseReleased, this, &ofxTextInputField::mouseReleased);
+	this->hasListeners = false;
 }
